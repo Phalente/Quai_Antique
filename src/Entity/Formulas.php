@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FormulasRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FormulasRepository::class)]
 class Formulas
@@ -15,9 +16,11 @@ class Formulas
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
+    #[Assert\NotNull()]
     private ?float $Price = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
 
     public function getId(): ?int

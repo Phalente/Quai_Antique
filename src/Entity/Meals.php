@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MealsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MealsRepository::class)]
 class Meals
@@ -15,12 +16,16 @@ class Meals
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2,max: 100)]
     private ?string $Title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Description = null;
 
     #[ORM\Column]
+    #[Assert\Positive()]
+    #[Assert\NotNull()]
     private ?float $Price = null;
 
     public function getId(): ?int
