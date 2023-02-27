@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use App\Entity\Allergy;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -27,6 +28,7 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
         
         //User
+        $users = [];
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setLastName($this->faker->lastName())
@@ -34,6 +36,19 @@ class AppFixtures extends Fixture
                 ->setEmail($this->faker->email())
                 ->setRoles(['ROLE_USER'])
                 ->setPlainPassword('password');
+
+            $users[] = $user;
+            $manager->persist($user);
+        }
+
+        //Allergy
+        $allergies = [];
+        for ($i = 0; $i < 50; $i++) {
+            $allergy = new Allergy();
+            $allergy->setName($this->faker->word());
+
+
+            $allergies[] = $allergy;
             $manager->persist($user);
         }
 

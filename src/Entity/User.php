@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,11 +51,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $CreatedAt = null;
+    #[Assert\NotNull()]
+    private ?\DateTimeImmutable $CreatedAt;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
+    private Collection $allergies;
 
     public function __construct()
     {
         $this->CreatedAt = new \DateTimeImmutable();
+        $this->allergies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,4 +190,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return string|null
      */
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Allergy>
+     */
+    public function getAllergies(): Collection
+    {
+        return $this->allergies;
+    }
+
+    public function addAllergy(Allergy $allergy): self
+    {
+        if (!$this->allergies->contains($allergy)) {
+            $this->allergies->add($allergy);
+        }
+
+        return $this;
+    }
+
+    public function removeAllergy(Allergy $allergy): self
+    {
+        $this->allergies->removeElement($allergy);
+
+        return $this;
+    }
 }
