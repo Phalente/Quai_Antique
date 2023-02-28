@@ -60,6 +60,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
     private Collection $allergies;
 
+    #[ORM\Column(nullable: true)]
+    #[Assert\PositiveOrZero]
+    #[Assert\LessThanOrEqual(10)]
+    private ?int $Nbr_of_covers_by_default = null;
+
     public function __construct()
     {
         $this->CreatedAt = new \DateTimeImmutable();
@@ -223,6 +228,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeAllergy(Allergy $allergy): self
     {
         $this->allergies->removeElement($allergy);
+
+        return $this;
+    }
+
+    public function getNbrOfCoversByDefault(): ?int
+    {
+        return $this->Nbr_of_covers_by_default;
+    }
+
+    public function setNbrOfCoversByDefault(?int $Nbr_of_covers_by_default): self
+    {
+        $this->Nbr_of_covers_by_default = $Nbr_of_covers_by_default;
 
         return $this;
     }

@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Allergy;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -60,6 +63,7 @@ class RegistrationType extends AbstractType
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
+                    new Assert\Email,
                     new Assert\Length(['min' => 5, 'max' => 180])
                 ]
             ])
@@ -85,6 +89,39 @@ class RegistrationType extends AbstractType
                 ],
                 'invalid_message' => 'Les messsages ne correspondent pas',
             ])
+            ->add('Nbr_of_covers_by_default', IntegerType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlength' => '2',
+                    'maxlength' => '50',
+                ],
+                'label' => 'Nombre de couvert par défaut (Facultatif)',
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\PositiveOrZero,
+                    new Assert\LessThanOrEqual(10)
+                ]
+            ])
+            /*             ->add('Allergies', EntityType::class, [
+                'class' => Allergy::class,
+                'attr' => [
+                    'class' => 'form-control',
+                    'multiple' => true
+                ],
+                'label' => 'Allergie(s) (Facultatif)',
+                'required' => false,
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\PositiveOrZero,
+                    new Assert\LessThanOrEqual(10)
+                ]
+            ])
+ */
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4'
