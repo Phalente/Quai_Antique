@@ -58,6 +58,7 @@ class Categories
     {
         if (!$this->Meals->contains($meal)) {
             $this->Meals->add($meal);
+            $meal->addCategory($this);
         }
 
         return $this;
