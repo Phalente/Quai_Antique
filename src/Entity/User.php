@@ -50,10 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = 'password';
 
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $CreatedAt = null;
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull()]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\ManyToMany(targetEntity: allergy::class, inversedBy: 'users')]
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull()]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
     private Collection $Allergies;
 
     #[ORM\Column(nullable: true)]
@@ -63,7 +68,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->CreatedAt = new \DateTimeImmutable();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
         $this->Allergies = new ArrayCollection();
     }
 
@@ -178,12 +184,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->CreatedAt;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $CreatedAt): self
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -200,7 +218,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->Allergies;
     }
 
-    public function addAllergy(allergy $allergy): self
+    public function addAllergy(Allergy $allergy): self
     {
         if (!$this->Allergies->contains($allergy)) {
             $this->Allergies->add($allergy);
@@ -209,7 +227,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeAllergy(allergy $allergy): self
+    public function removeAllergy(Allergy $allergy): self
     {
         $this->Allergies->removeElement($allergy);
 

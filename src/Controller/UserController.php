@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-        /**
+    /**
      * This controller allow us to edit user's profile
      * 
      * @param User $choosenUser
@@ -26,15 +26,14 @@ class UserController extends AbstractController
      */
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition/{id}', name: 'user.edit', methods: ['GET', 'POST'])]
-    public function edit(User $choosenUser, Request $request, EntityManagerInterface 
+    public function edit(User $choosenUser, Request $request, EntityManagerInterface
     $manager, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserType::class, $choosenUser);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($choosenUser, $form->getData()->getPlainPassword())
-            ) {
+            if ($hasher->isPasswordValid($choosenUser, $form->getData()->getPlainPassword())) {
                 $user = $form->getData();
                 $manager->persist($user);
                 $manager->flush();
@@ -50,7 +49,7 @@ class UserController extends AbstractController
                     'warning',
                     'Le mot de passe renseigné est incorrect.'
                 );
-            } 
+            }
         }
 
         return $this->render('pages/user/edit.html.twig', [
@@ -70,18 +69,18 @@ class UserController extends AbstractController
 
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/utilisateur/edition-mot-de-passe/{id}', 'user.edit.password', methods: ['GET', 'POST'])]
-    public function editPassword(User $choosenUser, Request $request, EntityManagerInterface 
-    $manager, UserPasswordHasherInterface $hasher) : Response
+    public function editPassword(User $choosenUser, Request $request, EntityManagerInterface
+    $manager, UserPasswordHasherInterface $hasher): Response
     {
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hasher->isPasswordValid($choosenUser, $form->getData()['plainPassword'])) { 
+            if ($hasher->isPasswordValid($choosenUser, $form->getData()['plainPassword'])) {
                 $choosenUser->setUpdatedAt(new \DateTimeImmutable());
                 $choosenUser->setPlainPassword(
 
-                        $form->getData()['newPassword']
+                    $form->getData()['newPassword']
                 );
 
                 $this->addFlash(
@@ -98,7 +97,7 @@ class UserController extends AbstractController
                     'warning',
                     'Le mot de passe renseigné est incorrect.'
                 );
-            } 
+            }
         }
 
         return $this->render('pages/user/edit_password.html.twig', [
