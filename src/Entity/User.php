@@ -51,14 +51,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\Column]
-    #[Assert\NotNull()]
-    private ?\DateTimeImmutable $CreatedAt;
+    private ?\DateTimeImmutable $CreatedAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
-
-    #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'users')]
-    private Collection $allergies;
+    #[ORM\ManyToMany(targetEntity: allergy::class, inversedBy: 'users')]
+    private Collection $Allergies;
 
     #[ORM\Column(nullable: true)]
     #[Assert\PositiveOrZero]
@@ -68,7 +64,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->CreatedAt = new \DateTimeImmutable();
-        $this->allergies = new ArrayCollection();
+        $this->Allergies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -196,38 +192,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @return string|null
      */
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Allergy>
+     * @return Collection<int, allergy>
      */
     public function getAllergies(): Collection
     {
-        return $this->allergies;
+        return $this->Allergies;
     }
 
-    public function addAllergy(Allergy $allergy): self
+    public function addAllergy(allergy $allergy): self
     {
-        if (!$this->allergies->contains($allergy)) {
-            $this->allergies->add($allergy);
+        if (!$this->Allergies->contains($allergy)) {
+            $this->Allergies->add($allergy);
         }
 
         return $this;
     }
 
-    public function removeAllergy(Allergy $allergy): self
+    public function removeAllergy(allergy $allergy): self
     {
-        $this->allergies->removeElement($allergy);
+        $this->Allergies->removeElement($allergy);
 
         return $this;
     }

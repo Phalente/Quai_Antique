@@ -18,13 +18,13 @@ class Allergy
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
     #[Assert\Unique()]
-    #[Assert\Length(min: 2,max: 100)]
-    private ?string $Name = null;
+    #[Assert\Length(min: 2, max: 50)]
+    private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'allergies')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Allergies')]
     private Collection $users;
 
     public function __construct()
@@ -39,12 +39,12 @@ class Allergy
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): self
+    public function setName(string $name): self
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
