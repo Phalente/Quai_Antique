@@ -29,6 +29,18 @@ class AppFixtures extends Fixture
         
         //User
         $users = [];
+
+        $admin = new User();
+        $admin
+            ->setLastName($this->faker->lastName())
+            ->setName($this->faker->firstName())
+            ->setEmail('admin@quaiAntique.fr')
+            ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
+            ->setPlainPassword('password');
+        
+        $users[] = $admin;
+        $manager->persist($admin);
+
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setLastName($this->faker->lastName())
