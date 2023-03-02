@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+    Liste des plats!
+
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>La carte</h1>
+        <div class="list-group mt-4">
+            {% for meal in meals %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ meal.title }}</h5>
+                    <small class="text-muted">{{ meal.price | number_format(2, ',', ' ') }}</small>
+                    </div>
+                    <p class="mb-1">{{ meal.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
