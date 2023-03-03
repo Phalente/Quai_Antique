@@ -2,26 +2,25 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Meals;
+use App\Entity\Formulas;
+use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class MealsCrudController extends AbstractCrudController
+class FormulasCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Meals::class;
+        return Formulas::class;
     }
-
 
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')
                 ->hideOnForm(),
-            TextField::new('title'),
+            Field::new('description'),
             MoneyField::new('price')->setCurrency('EUR')
         ];
     }

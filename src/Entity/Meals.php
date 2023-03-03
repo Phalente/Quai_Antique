@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Menus;
+use App\Entity\Categories;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MealsRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-#[UniqueEntity('name')]
+
 #[ORM\Entity(repositoryClass: MealsRepository::class)]
 class Meals
 {

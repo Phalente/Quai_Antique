@@ -8,7 +8,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -20,13 +22,13 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-        ->setEntityLabelInPlural('Utilisateurs')
-        ->setEntityLabelInSingular('Utilisateur')
-        ->setPageTitle("index", "Quai Antique - Administration des utilisateurs")
-        ->setPaginatorPageSize(10);
+            ->setEntityLabelInPlural('Utilisateurs')
+            ->setEntityLabelInSingular('Utilisateur')
+            ->setPageTitle("index", "Quai Antique - Administration des utilisateurs")
+            ->setPaginatorPageSize(10);
     }
 
-    
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -41,8 +43,10 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnIndex(),
             DateTimeField::new('createdAt')
                 ->hideOnForm()
-                ->setFormTypeOption('disabled', 'disabled')
+                ->setFormTypeOption('disabled', 'disabled'),
+            IntegerField::new('Number_of_guests')
+                ->setLabel('Nombre de couverts'),
+            AssociationField::new('Allergies')
         ];
     }
 }
-
