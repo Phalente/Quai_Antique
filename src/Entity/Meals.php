@@ -21,7 +21,7 @@ class Meals
 
     #[ORM\Column(length: 100)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min: 2,max: 100)]
+    #[Assert\Length(min: 2, max: 100)]
     private ?string $Title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -134,5 +134,10 @@ class Meals
         $this->Menus->removeElement($menu);
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->Title;
     }
 }

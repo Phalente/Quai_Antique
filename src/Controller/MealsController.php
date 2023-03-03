@@ -2,17 +2,30 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\MealsRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
-class MealController extends AbstractController
+class MealsController extends AbstractController
 {
+    /**
+     * This function display all meals
+     *
+     * @param MealsRepository $repository
+     * @param Request $request
+     * @return Response
+     */
+
     #[Route('/meal', name: 'app_meal')]
-    public function index(): Response
+    public function index(MealsRepository $mealsRepository): Response
     {
-        return $this->render('meal/index.html.twig', [
-            'controller_name' => 'MealsController',
+
+        $meals = $mealsRepository->findAll();
+
+        return $this->render('pages/meal/index.html.twig', [
+            'meals' => $meals
         ]);
     }
 }
