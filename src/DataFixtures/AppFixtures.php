@@ -3,7 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
-use App\Entity\Allergy;
+use App\Entity\Meals;
+use App\Entity\Categories;
+use App\Repository\CategoriesRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -26,7 +28,7 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        
+
         //User
         $users = [];
 
@@ -37,7 +39,7 @@ class AppFixtures extends Fixture
             ->setEmail('admin@quaiAntique.fr')
             ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
             ->setPlainPassword('password');
-        
+
         $users[] = $admin;
         $manager->persist($admin);
 
@@ -53,16 +55,31 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        //Allergy
-        $allergies = [];
-        for ($i = 0; $i < 50; $i++) {
-            $allergy = new Allergy();
-            $allergy->setName($this->faker->word());
+        //Categories
+        $category = [];
+        for ($i = 0; $i < 5; $i++) {
+            $categories = new Categories();
+            $categories->setName($this->faker->city());
 
-
-            $allergies[] = $allergy;
-            $manager->persist($user);
+            $category[] = $categories;
+            $manager->persist($categories);
         }
+
+        //Meals
+        $meal = [];
+        foreach ($category as $categories) {
+            for ($repast = 0; $repast < 5; $repast++) {
+                $meals = new Meals();
+                $meals->setTitle($this->faker->words(3, true))
+                    ->setDescription($this->faker->paragraph())
+                    ->setPrice($this->faker->randomFloat(1, 7, 22))
+                    ->addCategory($category[mt_rand(0, count($category) - 1)]);
+
+                $meal[] = $meals;
+                $manager->persist($meals);
+            }
+        }
+
 
         $manager->flush();
     }
