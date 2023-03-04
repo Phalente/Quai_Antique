@@ -106,13 +106,17 @@ class RegistrationType extends AbstractType
                 ]
             ])
             ->add('Allergies', EntityType::class, [
-                'class' => Allergy::class,
-                'mapped' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'multiple' => true
                 ],
-                'label' => 'Allergie(s) (Facultatif)',
+                'class' => Allergy::class,
+                'mapped' => false,
+                'multiple' => true,
+                'expanded' => true,
+                'choice_label' => 'name',
+                'by_reference' => false,
+                'label' => "Allergies (Facultatif)",
+                'placeholder' => 'Avez-vous des allergies?',
                 'required' => false,
                 'label_attr' => [
                     'class' => 'form-label mt-4'

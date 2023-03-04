@@ -15,20 +15,20 @@ class AllergyController extends AbstractController
     {
         $entitymanager = $doctrine->getManager();
         $allergies = array(
-            'Gluten',
-            'Crustacés',
-            'Oeufs',
-            'Poissons',
-            'Arachides',
-            'Soja',
-            'Lait',
-            'Fruit à coque',
-            'Céleri',
-            'Moutarde',
-            'Graine de sésame',
-            'Sulfites',
-            'Lupin',
-            'Mollusques',
+            'Gluten ',
+            'Crustacés ',
+            'Oeufs ',
+            'Poissons ',
+            'Arachides ',
+            'Soja ',
+            'Lait ',
+            'Fruit à coque ',
+            'Céleri ',
+            'Moutarde ',
+            'Graine de sésame ',
+            'Sulfites ',
+            'Lupin ',
+            'Mollusques ',
         );
 
         $existingAllergies = $entitymanager->getRepository(Allergy::class)->findAll();

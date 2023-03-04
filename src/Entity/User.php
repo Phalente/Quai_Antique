@@ -215,7 +215,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
 
     /**
-     * @return Collection<int, allergy>
+     * @return Collection<int, Allergy>
      */
     public function getAllergies(): Collection
     {
@@ -226,6 +226,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if (!$this->Allergies->contains($allergy)) {
             $this->Allergies->add($allergy);
+            $allergy->addUser($this);
         }
 
         return $this;
