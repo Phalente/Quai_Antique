@@ -32,6 +32,7 @@ class MealsCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('title'),
+            TextField::new('description'),
             MoneyField::new('price')->setCurrency('EUR')
         ];
     }

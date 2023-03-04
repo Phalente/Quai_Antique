@@ -23,9 +23,19 @@ class MealsController extends AbstractController
     {
 
         $meals = $mealsRepository->findAll();
+        $entrees = $mealsRepository->findByCategoriesID(11);
+        $plats = $mealsRepository->findByCategoriesID(12);
+        $desserts = $mealsRepository->findByCategoriesID(13);
+        $burgers = $mealsRepository->findByCategoriesID(14);
+        $boissons = $mealsRepository->findByCategoriesID(15);
+
 
         return $this->render('pages/meal/index.html.twig', [
-            'meals' => $meals
+            'entrees' => $entrees,
+            'plats' => $plats,
+            'desserts' => $desserts,
+            'burgers' => $burgers,
+            'boissons' => $boissons,
         ]);
     }
 }
