@@ -38,10 +38,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Photos', 'fas fa-image', Pictures::class);
         yield MenuItem::subMenu('La Carte', 'fas fa-bread-slice')->setSubItems([
-            MenuItem::linkToCrud('Categorie', 'fas fa-plus', Categories::class),
-            MenuItem::linkToCrud('Plats', 'fas fa-plus', Meals::class),
-            MenuItem::linkToCrud('Menus', 'fas fa-plus', Menus::class),
-            MenuItem::linkToCrud('Formules', 'fas fa-plus', Formulas::class),
+            MenuItem::linkToCrud('Categorie', 'fas fa-arrow-right', Categories::class),
+            MenuItem::linkToCrud('Plats', 'fas fa-arrow-right', Meals::class),
+            MenuItem::linkToCrud('Menus', 'fas fa-arrow-right', Menus::class),
+            MenuItem::linkToCrud('Formules', 'fas fa-arrow-right', Formulas::class),
         ]);
         yield MenuItem::linkToCrud('Horaires', 'fas fa-clock', RestaurantHours::class);
     }
