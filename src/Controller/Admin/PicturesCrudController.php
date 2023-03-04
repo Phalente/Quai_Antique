@@ -25,7 +25,7 @@ class PicturesCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Photos')
             ->setEntityLabelInSingular('Photo')
             ->setPageTitle("index", "Quai Antique - Administration des photos")
-            ->setPaginatorPageSize(20);
+            ->setPaginatorPageSize(10);
     }
 
 
@@ -35,17 +35,17 @@ class PicturesCrudController extends AbstractCrudController
             IdField::new('id')
                 ->hideOnForm(),
             TextField::new('title')
-                ->setLabel('nom de l\'image'),
+                ->setLabel('Nom de l\'image'),
             TextField::new('text_alt')
                 ->setLabel('Description'),
-            TextField::new('ImageFile')
+            TextField::new('imageFile')
                 ->setFormType(VichImageType::class)
                 ->setLabel('Importez votre image')
                 ->onlyWhenCreating(),
             ImageField::new('file')
                 ->setBasePath('/uploads/pictures')
                 ->onlyOnIndex(),
-            TextareaField::new('ImageFile')
+            TextareaField::new('imageFile')
                 ->setFormType(VichImageType::class)
                 ->onlyOnForms(),
         ];

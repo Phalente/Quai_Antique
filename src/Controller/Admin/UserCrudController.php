@@ -44,7 +44,7 @@ class UserCrudController extends AbstractCrudController
             DateTimeField::new('createdAt')
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),
-            IntegerField::new('Number_of_guests')
+            IntegerField::new('Nbr_of_covers_by_default')
                 ->setLabel('Nombre de couverts'),
             AssociationField::new('Allergies')
         ];
