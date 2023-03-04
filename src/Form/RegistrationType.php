@@ -105,8 +105,9 @@ class RegistrationType extends AbstractType
                     new Assert\LessThanOrEqual(10)
                 ]
             ])
-            /*             ->add('Allergies', EntityType::class, [
+            ->add('Allergies', EntityType::class, [
                 'class' => Allergy::class,
+                'mapped' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'multiple' => true
@@ -121,7 +122,7 @@ class RegistrationType extends AbstractType
                     new Assert\LessThanOrEqual(10)
                 ]
             ])
- */
+
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4'
