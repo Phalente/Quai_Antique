@@ -1,17 +1,55 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello MealController!{% endblock %}
-
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-
-</div>
-{% endblock %}
+    <div class="container mt-4">
+        <h1>La carte</h1>
+        <h2 class='mt-4'>Nos entrées</h2>
+        <div class="list-group mt-4">
+            {% for entree in entrees %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ entree.title }}</h5>
+                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
+                            €</small>
+                    </div>
+                    <p class="mb-1">{{ entree.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class='mt-4'>Nos plats</h2>
+        <div class="list-group mt-4">
+            {% for plat in plats %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ plat.title }}</h5>
+                        <small class="text-muted">{{ plat.price | number_format(2, ',', ' ') }}
+                            €</small>
+                    </div>
+                    <p class="mb-1">{{ plat.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class='mt-4'>Nos desserts</h2>
+        <div class="list-group mt-4">
+            {% for entree in entrees %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ entree.title }}</h5>
+                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
+                            €</small>
+                    </div>
+                    <p class="mb-1">{{ entree.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <h2 class='mt-4'>Nos boissons</h2>
+        <div class="list-group mt-4">
+            {% for entree in entrees %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ entree.title }}</h5>
+                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
+                            €</small>
+                    </div>
+                    <p class="mb-1">{{ entree.description }}</p>
+                </div>
+            {% endfor %}
+        </div>

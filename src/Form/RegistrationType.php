@@ -29,7 +29,7 @@ class RegistrationType extends AbstractType
                 ],
                 'label' => 'Prénom',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -44,7 +44,7 @@ class RegistrationType extends AbstractType
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -59,7 +59,7 @@ class RegistrationType extends AbstractType
                 ],
                 'label' => 'Adresse email',
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\NotBlank(),
@@ -75,7 +75,7 @@ class RegistrationType extends AbstractType
                     ],
                     'label' => 'Mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label mt-4'
+                        'class' => 'form-label'
                     ]
                 ],
                 'second_options' => [
@@ -84,7 +84,7 @@ class RegistrationType extends AbstractType
                     ],
                     'label' => 'Confirmation du mot de passe',
                     'label_attr' => [
-                        'class' => 'form-label mt-4'
+                        'class' => 'form-label'
                     ]
                 ],
                 'invalid_message' => 'Les messsages ne correspondent pas',
@@ -98,7 +98,7 @@ class RegistrationType extends AbstractType
                 'label' => 'Nombre de couvert par défaut (Facultatif)',
                 'required' => false,
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\PositiveOrZero,
@@ -119,13 +119,13 @@ class RegistrationType extends AbstractType
                 'placeholder' => 'Avez-vous des allergies?',
                 'required' => false,
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
+                    'class' => 'form-label'
+                ]
             ])
 
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary'
                 ]
             ]);
     }

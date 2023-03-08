@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230303205547 extends AbstractMigration
+final class Version20230308111300 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -30,6 +30,7 @@ final class Version20230303205547 extends AbstractMigration
         $this->addSql('CREATE TABLE menus_formulas (menus_id INT NOT NULL, formulas_id INT NOT NULL, INDEX IDX_E3378CEF14041B84 (menus_id), INDEX IDX_E3378CEFE30F9153 (formulas_id), PRIMARY KEY(menus_id, formulas_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE pictures (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(100) NOT NULL, text_alt LONGTEXT DEFAULT NULL, file VARCHAR(100) DEFAULT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE reservation (id INT AUTO_INCREMENT NOT NULL, restaurant_hour_id INT NOT NULL, user_id INT DEFAULT NULL, date DATETIME NOT NULL, hour TIME NOT NULL, number_of_guests INT NOT NULL, INDEX IDX_42C849557FD8278C (restaurant_hour_id), INDEX IDX_42C84955A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE reservation_allergy (reservation_id INT NOT NULL, allergy_id INT NOT NULL, INDEX IDX_AC24F930B83297E7 (reservation_id), INDEX IDX_AC24F930DBFD579D (allergy_id), PRIMARY KEY(reservation_id, allergy_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE restaurant_hours (id INT AUTO_INCREMENT NOT NULL, day VARCHAR(50) NOT NULL, opening_lunch TIME DEFAULT NULL, closing_lunch TIME DEFAULT NULL, places_available_lunch INT NOT NULL, opening_dinner TIME DEFAULT NULL, closing_dinner TIME DEFAULT NULL, places_available_dinner INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', updated_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', nbr_of_covers_by_default INT DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE user_allergy (user_id INT NOT NULL, allergy_id INT NOT NULL, INDEX IDX_93BC5CBFA76ED395 (user_id), INDEX IDX_93BC5CBFDBFD579D (allergy_id), PRIMARY KEY(user_id, allergy_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -42,6 +43,8 @@ final class Version20230303205547 extends AbstractMigration
         $this->addSql('ALTER TABLE menus_formulas ADD CONSTRAINT FK_E3378CEFE30F9153 FOREIGN KEY (formulas_id) REFERENCES formulas (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C849557FD8278C FOREIGN KEY (restaurant_hour_id) REFERENCES restaurant_hours (id)');
         $this->addSql('ALTER TABLE reservation ADD CONSTRAINT FK_42C84955A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE reservation_allergy ADD CONSTRAINT FK_AC24F930B83297E7 FOREIGN KEY (reservation_id) REFERENCES reservation (id) ON DELETE CASCADE');
+        $this->addSql('ALTER TABLE reservation_allergy ADD CONSTRAINT FK_AC24F930DBFD579D FOREIGN KEY (allergy_id) REFERENCES allergy (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE user_allergy ADD CONSTRAINT FK_93BC5CBFA76ED395 FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE CASCADE');
         $this->addSql('ALTER TABLE user_allergy ADD CONSTRAINT FK_93BC5CBFDBFD579D FOREIGN KEY (allergy_id) REFERENCES allergy (id) ON DELETE CASCADE');
     }
@@ -57,6 +60,8 @@ final class Version20230303205547 extends AbstractMigration
         $this->addSql('ALTER TABLE menus_formulas DROP FOREIGN KEY FK_E3378CEFE30F9153');
         $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C849557FD8278C');
         $this->addSql('ALTER TABLE reservation DROP FOREIGN KEY FK_42C84955A76ED395');
+        $this->addSql('ALTER TABLE reservation_allergy DROP FOREIGN KEY FK_AC24F930B83297E7');
+        $this->addSql('ALTER TABLE reservation_allergy DROP FOREIGN KEY FK_AC24F930DBFD579D');
         $this->addSql('ALTER TABLE user_allergy DROP FOREIGN KEY FK_93BC5CBFA76ED395');
         $this->addSql('ALTER TABLE user_allergy DROP FOREIGN KEY FK_93BC5CBFDBFD579D');
         $this->addSql('DROP TABLE allergy');
@@ -69,6 +74,7 @@ final class Version20230303205547 extends AbstractMigration
         $this->addSql('DROP TABLE menus_formulas');
         $this->addSql('DROP TABLE pictures');
         $this->addSql('DROP TABLE reservation');
+        $this->addSql('DROP TABLE reservation_allergy');
         $this->addSql('DROP TABLE restaurant_hours');
         $this->addSql('DROP TABLE user');
         $this->addSql('DROP TABLE user_allergy');

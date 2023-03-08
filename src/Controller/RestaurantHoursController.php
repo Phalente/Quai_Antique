@@ -35,10 +35,10 @@ class RestaurantHoursController extends AbstractController
         $restaurantHour->setDay($dayName)
           ->setOpeningLunch(\DateTime::createFromFormat('H:i', '11:30'))
           ->setClosingLunch(\DateTime::createFromFormat('H:i', '15:00'))
-          ->setPlacesAvailableLunch(300)
+          ->setPlacesAvailableLunch(100)
           ->setOpeningDinner(\DateTime::createFromFormat('H:i', '19:30'))
           ->setClosingDinner(\DateTime::createFromFormat('H:i', '23:00'))
-          ->setPlacesAvailableDinner(300);
+          ->setPlacesAvailableDinner(100);
         $entitymanager->persist($restaurantHour);
       }
 
@@ -58,5 +58,36 @@ class RestaurantHoursController extends AbstractController
     return $this->render('pages/restaurant_hours/index.html.twig', [
       'restaurantHours' => $restaurantHours
     ]);
+  }
+  #[Route('/horaires', name: 'app_restaurant_hours')]
+
+  public function getRestaurantHours(RestaurantHoursRepository $restaurantHoursRepository): array
+  {
+    $restaurantHours = $restaurantHoursRepository->findAll();
+
+    $openingLunch = [];
+    $closingLunch = [];
+    $openingDinner = [];
+    $closingDinner = [];
+
+    foreach ($restaurantHours as $hours) {
+      $openingLunch[$hours->getDay()] = $hours->getOpeningLunch();
+      $closingLunch[$hours->getDay()] = $hours->getOpeningLunch();
+      $openingDinner[$hours->getDay()] = $hours->getOpeningDinner();
+      $closingDinner[$hours->getDay()] = $hours->getClosingDinner();
+    }
+    dd(
+      $openingLunch,
+      $closingLunch,
+      $openingDinner,
+      $closingDinner
+    );
+
+    return [
+      'openingLunch' => $openingLunch,
+      'closingLunch' => $closingLunch,
+      'openingDinner' => $openingDinner,
+      'closingDinner' => $closingDinner
+    ];
   }
 }

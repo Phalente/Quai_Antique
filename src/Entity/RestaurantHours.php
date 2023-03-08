@@ -172,4 +172,9 @@ class RestaurantHours
 
     return $this;
   }
+
+  public function __toString(): string
+  {
+    return sprintf('%s %s (%s-%s)', $this->Day, $this->Opening_lunch->format('H:i'), $this->Closing_lunch->format('H:i'), $this->Opening_dinner->format('H:i'), $this->Closing_dinner->format('H:i'));
+  }
 }
