@@ -33,10 +33,10 @@ class RestaurantHoursController extends AbstractController
       foreach ($daysOfWeek as $dayName) {
         $restaurantHour = new RestaurantHours;
         $restaurantHour->setDay($dayName)
-          ->setOpeningLunch(\DateTime::createFromFormat('H:i', '11:30'))
+          ->setOpeningLunch(\DateTime::createFromFormat('H:i', '12:00'))
           ->setClosingLunch(\DateTime::createFromFormat('H:i', '15:00'))
           ->setPlacesAvailableLunch(100)
-          ->setOpeningDinner(\DateTime::createFromFormat('H:i', '19:30'))
+          ->setOpeningDinner(\DateTime::createFromFormat('H:i', '20:00'))
           ->setClosingDinner(\DateTime::createFromFormat('H:i', '23:00'))
           ->setPlacesAvailableDinner(100);
         $entitymanager->persist($restaurantHour);

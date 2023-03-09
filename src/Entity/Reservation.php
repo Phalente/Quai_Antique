@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
@@ -15,13 +18,17 @@ class Reservation
   private ?int $id = null;
 
   #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+  #[Assert\Type("\DateTimeInterface")]
   private ?\DateTimeInterface $Date = null;
 
   #[ORM\Column(type: Types::TIME_MUTABLE)]
+  #[Assert\Type("\DateTimeInterface")]
   private ?\DateTimeInterface $Hour = null;
 
   #[ORM\Column]
-  private ?int $Number_of_guests = null;
+  #[Assert\PositiveOrZero]
+  #[Assert\LessThanOrEqual(10)]
+  private ?int $Number_of_covers = null;
 
   #[ORM\ManyToOne(inversedBy: 'reservations')]
   #[ORM\JoinColumn(nullable: false)]
@@ -30,6 +37,14 @@ class Reservation
   #[ORM\ManyToOne(inversedBy: 'reservations')]
   #[ORM\JoinColumn(nullable: true)]
   private ?User $User = null;
+
+  #[ORM\ManyToMany(targetEntity: Allergy::class, inversedBy: 'reservations')]
+  private Collection $Allergy;
+
+  public function __construct()
+  {
+    $this->Allergy = new ArrayCollection();
+  }
 
   public function getId(): ?int
   {
@@ -60,14 +75,14 @@ class Reservation
     return $this;
   }
 
-  public function getNumberOfGuests(): ?int
+  public function getNumberOfCovers(): ?int
   {
-    return $this->Number_of_guests;
+    return $this->Number_of_covers;
   }
 
-  public function setNumberOfGuests(int $Number_of_guests): self
+  public function setNumberOfCovers(int $Number_of_covers): self
   {
-    $this->Number_of_guests = $Number_of_guests;
+    $this->Number_of_covers = $Number_of_covers;
 
     return $this;
   }
@@ -92,6 +107,30 @@ class Reservation
   public function setUser(?User $User): self
   {
     $this->User = $User;
+
+    return $this;
+  }
+
+  /**
+   * @return Collection<int, Allergy>
+   */
+  public function getAllergies(): Collection
+  {
+    return $this->Allergy;
+  }
+
+  public function addAllergy(Allergy $allergy): self
+  {
+    if (!$this->Allergy->contains($allergy)) {
+      $this->Allergy->add($allergy);
+    }
+
+    return $this;
+  }
+
+  public function removeAllergy(Allergy $allergy): self
+  {
+    $this->Allergy->removeElement($allergy);
 
     return $this;
   }
