@@ -5,12 +5,11 @@
 
 {% block body %}
 
-    <div class="container mt-4">
-        <div class="text-center">
-            <h1 class="display-4">Réservez votre table</h1>
-                <p class="lead">Attention : Pour tout retard de plus de 20 min <br>
-                votre table sera donnée à d'autre clients..!</p>
-        </div>
+    <div class="container">
+        <h1 class="text-center mt-4">Réservez votre table</h1>
+        <p class="text-center"> Attention : Pour tout retard de plus de 20 min votre table sera données 
+            à d'autres clients
+        </p>
 
         {{ form_start(formReservation) }}
         {{ form_row(formReservation.Date) }}
@@ -21,12 +20,9 @@
 
     {% block javascript %}
         <script>
-            window.onload = () => {
-                let date = document.querySelector("#reservation_Date");
-                date.addEventListener("change", function () {
-                    let form = this.closest("form");
-                    console.log(2);
-                });
-            }
+            let date = document.querySelector("#reservation_Date");
+            date.addEventListener("change", function () {
+                this.setAttribure('value', this.value);
+            });
         </script>
     {% endblock %}
