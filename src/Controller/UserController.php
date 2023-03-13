@@ -35,6 +35,11 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($hasher->isPasswordValid($choosenUser, $form->getData()->getPlainPassword())) {
                 $user = $form->getData();
+                $user->removeAllAllergies();
+                $allergies = $form->get('Allergies')->getData();
+                foreach ($allergies as $allergy) {
+                    $user->addAllergy($allergy);
+                }
                 $manager->persist($user);
                 $manager->flush();
 
@@ -43,7 +48,7 @@ class UserController extends AbstractController
                     'Les informations de votre compte ont bien été modifiées.'
                 );
 
-                return $this->redirectToRoute('carte.index');
+                return $this->redirectToRoute('home.index');
             } else {
                 $this->addFlash(
                     'warning',

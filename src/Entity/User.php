@@ -239,6 +239,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function removeAllAllergies(): self
+    {
+        $this->Allergies->clear();
+        return $this;
+    }
+
     public function getNbrOfCoversByDefault(): ?int
     {
         return $this->Nbr_of_covers_by_default;

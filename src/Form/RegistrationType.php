@@ -4,20 +4,31 @@ namespace App\Form;
 
 use App\Entity\User;
 use App\Entity\Allergy;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationType extends AbstractType
 {
+    private $manager;
+    private $security;
+
+
+    public function __construct(EntityManagerInterface $manager, Security $security)
+    {
+        $this->manager = $manager;
+        $this->security = $security;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -104,24 +115,27 @@ class RegistrationType extends AbstractType
                     new Assert\PositiveOrZero,
                     new Assert\LessThanOrEqual(10)
                 ]
-            ])
-            ->add('Allergies', EntityType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'class' => Allergy::class,
-                'mapped' => false,
-                'multiple' => true,
-                'expanded' => true,
-                'choice_label' => 'name',
-                'by_reference' => false,
-                'label' => "Allergies (Facultatif)",
-                'placeholder' => 'Avez-vous des allergies?',
-                'required' => false,
-                'label_attr' => [
-                    'class' => 'form-label'
-                ]
-            ])
+            ]);
+        /**@var User $user*/
+        $user = $this->security->getUser();
+        if ($user !== null) {
+            $userAllergies = $user->getAllergies()->toArray();
+        } else {
+            $userAllergies = null;
+        }
+        $builder->add('Allergies', EntityType::class, [
+            'attr' => [
+                'class' => 'form-control',
+            ],
+            'class' => Allergy::class,
+            'choice_label' => 'name',
+            'label' => 'Allergies',
+            'mapped' => false,
+            'required' => false,
+            'multiple' => true,
+            'expanded' => true,
+            'data' => $userAllergies
+        ])
 
             ->add('submit', SubmitType::class, [
                 'attr' => [

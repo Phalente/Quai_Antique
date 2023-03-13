@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ReservationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Allergy;
+use InvalidArgumentException;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ReservationRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
@@ -97,6 +99,28 @@ class Reservation
     $this->Restaurant_hour = $Restaurant_hour;
 
     return $this;
+  }
+
+  public function getRestaurantHourID(\DateTimeInterface $day): int
+  {
+    switch ($day->format('l')) {
+      case 'Monday':
+        return 1;
+      case 'Tuesday':
+        return 2;
+      case 'Wednesday':
+        return 3;
+      case 'Thursday':
+        return 4;
+      case 'Friday':
+        return 5;
+      case 'Saturday':
+        return 6;
+      case 'Sunday':
+        return 7;
+      default:
+        throw new InvalidArgumentException('Invalid day of the week');
+    }
   }
 
   public function getUser(): ?User
