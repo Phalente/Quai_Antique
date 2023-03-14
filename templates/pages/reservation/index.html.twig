@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservez votre table
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center mt-4">Réservez votre table</h1>
+        <p class="text-center"> Attention : Pour tout retard de plus de 20 min votre table sera données 
+            à d'autres clients
+        </p>
+
+        {{ form_start(formReservation) }}
+        {{ form_row(formReservation.Date) }}
+        {{ form_row(formReservation.time_slot) }}
+        {{ form_end(formReservation) }}
+
+    {% endblock %}
+
+    {% block javascript %}
+        <script>
+            let date = document.querySelector("#reservation_Date");
+            date.addEventListener("change", function () {
+                this.setAttribure('value', this.value);
+            });
+        </script>
+    {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des horaires!
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Les horaires</h1>
+        <div class="list-group mt-4">
+            {% for restaurantHour in restaurantHours %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ restaurantHour.day }}</h5>
+                        <div class="d-flex flex-column">
+                            <small class="text-muted">{{ restaurantHour.openingLunch | date('H:i') }}
+                                -
+                                {{ restaurantHour.closingLunch | date('H:i') }}
+                            </small>
+                            <small class="text-muted">{{ restaurantHour.openingDinner | date('H:i') }}
+                                -
+                                {{ restaurantHour.closingDinner | date('H:i') }}
+                            </small>
+                        </div>
+                    </div>
+                    <p class="mb-1">Service du midi :
+                        <strong>{{ restaurantHour.placesAvailableLunch }}</strong>
+                        places disponibles</p>
+                    <p class="mb-1">Service du soir :
+                        <strong>{{ restaurantHour.placesAvailableDinner }}</strong>
+                        places disponibles</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

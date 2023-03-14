@@ -1,0 +1,29 @@
+$firstColor: #7a1920;
+$secondColor: #8dccd6;
+$principalText: "Libre Baskerville", serif;
+$secondText: "Italianno", cursive;
+$thirdText: "Inter", sans-serif;
+
+.navbar {
+  background-color: $firstColor;
+}
+
+.navbar a {
+  color: $secondColor;
+  font-family: $secondText;
+  font-size: 2.2em;
+}
+
+h1,
+h2 {
+  font-family: $principalText;
+}
+
+p {
+  font-family: $thirdText;
+  font-size: 1.2em;
+}
+
+img {
+  width: 140px;
+}
