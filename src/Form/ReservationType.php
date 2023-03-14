@@ -51,20 +51,30 @@ class ReservationType extends AbstractType
     } else {
       $userAllergies = null;
     }
-    $builder->add('Allergies', EntityType::class, [
+    $builder->add('Number_of_covers', IntegerType::class, [
       'attr' => [
         'class' => 'form-control',
       ],
-      'class' => Allergy::class,
-      'choice_label' => 'name',
-      'label' => 'Allergies (Facultatif)',
-      'mapped' => false,
-      'required' => false,
-      'multiple' => true,
-      'expanded' => true,
-      'data' => $userAllergies
+      'label' => 'Nombre de convive(s)',
+      'label_attr' => [
+        'class' => 'form-label'
+      ],
+      'data' => $defaultCovers
+    ])
+      ->add('Allergies', EntityType::class, [
+        'attr' => [
+          'class' => 'form-control',
+        ],
+        'class' => Allergy::class,
+        'choice_label' => 'name',
+        'label' => 'Allergies (Facultatif)',
+        'mapped' => false,
+        'required' => false,
+        'multiple' => true,
+        'expanded' => true,
+        'data' => $userAllergies
 
-    ]);
+      ]);
 
 
     $builder
@@ -75,17 +85,6 @@ class ReservationType extends AbstractType
           'class' => 'datepicker',
         ]
       ])
-      ->add('Number_of_guests', IntegerType::class, [
-        'attr' => [
-          'class' => 'form-control',
-        ],
-        'label' => 'Nombre de convive(s)',
-        'label_attr' => [
-          'class' => 'form-label'
-        ],
-        'data' => $defaultCovers
-      ])
-
       ->add('submit', SubmitType::class, [
         'attr' => [
           'class' => 'btn btn-primary mt-4'
