@@ -5,11 +5,75 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <div class="jumbotron text-center">
-            <h1>Bienvenue sur Quai Antique!</h1>
-            <p>Goutez aux saveurs Savoyardes</p>
-        </div>
-    </div>
-{% endblock %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
+    <h1 class="text-center mt-4">Bienvenue sur Quai Antique</h1> 
+
+<!-- home section starts -->
+    <!-- Swiper -->
+<section class="home">
+    <div class="swiper home-slider">
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="{{ asset('build/images/home-img-1.jpg') }}" alt="Fondue Savoyarde">
+                    <div class="image_overlay">
+                        <div class="image_title">
+                            Fondue Savoyarde
+                        </div>
+                        <p class="image_description">
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-slide slide">
+                <div class="image">
+                    <img src="{{ asset('build/images/home-img-2.jpg') }}"  alt="Filet de perche">
+                    <div class="image_overlay">
+                        <div class="image_title">
+                            Filet de perche
+                        </div>
+                        <p class="image_description">
+                            Poisson d’eau douce particulièrement prisé dans les régions alpines, <br>
+                            la perche se cuisine et s’accommode au gré de ses envies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            
+            <!-- Swiper end-->
+
+        <!-- Block Javascript -->
+            <!-- Initialize Swiper -->
+            <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+            <!-- Initialize Swiper -->
+            <script>
+                var swiper = new Swiper(".home-slider", {
+                effect: "flip",
+                loop:true,
+                pagination: {
+                    clickable:true,
+                    el: ".swiper-pagination",
+                },
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+            </script>
+        <div>
+    </div>
+</section>
+<!-- home section ends -->
+{% endblock %}

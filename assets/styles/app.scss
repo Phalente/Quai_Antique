@@ -12,6 +12,7 @@ $thirdText: "Inter", sans-serif;
   color: $secondColor;
   font-family: $secondText;
   font-size: 2.2em;
+  margin-left: 0.8em;
 }
 
 h1,
@@ -24,6 +25,110 @@ p {
   font-size: 1.2em;
 }
 
-img {
+.logo {
   width: 140px;
+}
+
+section {
+  padding: 1em;
+}
+
+.image {
+  position: relative;
+  width: 400px;
+}
+
+.home .slide {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+}
+
+.home .slide .content {
+  flex: 1 1 40rem;
+  text-align: center;
+}
+
+.home .slide .image {
+  flex: 1 1 40rem;
+}
+
+.home .slide .image img {
+  width: 100%;
+}
+
+.home .slide .content span {
+  font-size: 2rem;
+  font-family: $principalText;
+  color: $secondColor;
+}
+
+.home .slide .content h3 {
+  margin: 1rem 0;
+  font-size: 5rem;
+  font-family: $secondText;
+  color: var(--black);
+  text-transform: capitalize;
+}
+
+.swiper {
+  width: auto;
+  max-width: 1000px;
+  height: auto;
+  max-height: 650px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: auto;
+  max-width: 1000px;
+  height: auto;
+  max-height: 650px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.image_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-family: $thirdText;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.image_overlay > * {
+  transform: translateY(40px);
+  transition: transform 0.25s;
+}
+
+.image_overlay:hover {
+  opacity: 1;
+}
+
+.image_overlay:hover > * {
+  transform: translateY(0);
+}
+
+.image_title {
+  font-size: 2em;
+  font-family: $secondText;
+}
+
+.image_description {
+  font-size: 1.25em;
+  margin-top: 0.25em;
 }
