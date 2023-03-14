@@ -45,8 +45,9 @@ class UserCrudController extends AbstractCrudController
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', 'disabled'),
             IntegerField::new('Nbr_of_covers_by_default')
-                ->setLabel('Nombre de couverts'),
+                ->setLabel('Nombre de couverts par défaut'),
             AssociationField::new('Allergies')
+                ->setLabel('Allergies')
         ];
     }
 }

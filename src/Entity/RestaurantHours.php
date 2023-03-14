@@ -21,11 +21,11 @@ class RestaurantHours
   private ?string $Day = null;
 
   #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-  #[Assert\Time]
+  #[Assert\Type("\DateTimeInterface")]
   private ?\DateTimeInterface $Opening_lunch = null;
 
   #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-  #[Assert\Time]
+  #[Assert\Type("\DateTimeInterface")]
   private ?\DateTimeInterface $Closing_lunch = null;
 
   #[ORM\Column]
@@ -33,11 +33,11 @@ class RestaurantHours
   private ?int $Places_available_lunch = null;
 
   #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-  #[Assert\Time]
+  #[Assert\Type("\DateTimeInterface")]
   private ?\DateTimeInterface $Opening_dinner = null;
 
   #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-  #[Assert\Time]
+  #[Assert\Type("\DateTimeInterface")]
   private ?\DateTimeInterface $Closing_dinner = null;
 
   #[ORM\Column]
@@ -171,5 +171,10 @@ class RestaurantHours
     }
 
     return $this;
+  }
+
+  public function __toString(): string
+  {
+    return sprintf('%s %s (%s-%s)', $this->Day, $this->Opening_lunch->format('H:i'), $this->Closing_lunch->format('H:i'), $this->Opening_dinner->format('H:i'), $this->Closing_dinner->format('H:i'));
   }
 }
