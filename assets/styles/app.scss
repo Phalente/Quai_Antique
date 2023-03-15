@@ -12,7 +12,11 @@ $thirdText: "Inter", sans-serif;
   color: $secondColor;
   font-family: $secondText;
   font-size: 2.2em;
-  margin-left: 0.8em;
+}
+
+ul li a.active {
+  text-decoration: underline 1px;
+  text-underline-offset: 6px;
 }
 
 h1,
@@ -124,11 +128,11 @@ section {
 }
 
 .image_title {
-  font-size: 2em;
+  font-size: 2.8em;
   font-family: $secondText;
 }
 
 .image_description {
-  font-size: 1.25em;
+  font-size: 1em;
   margin-top: 0.25em;
 }
