@@ -4,6 +4,8 @@ $principalText: "Libre Baskerville", serif;
 $secondText: "Italianno", cursive;
 $thirdText: "Inter", sans-serif;
 
+//Header
+
 .navbar {
   background-color: $firstColor;
 }
@@ -32,6 +34,8 @@ p {
 .logo {
   width: 140px;
 }
+
+// Slider
 
 section {
   padding: 1em;
@@ -135,4 +139,21 @@ section {
 .image_description {
   font-size: 1em;
   margin-top: 0.25em;
+}
+
+// footer
+
+footer {
+  background-color: $firstColor;
+  color: $secondColor;
+}
+
+footer a {
+  color: $secondColor;
+  text-decoration: none;
+}
+
+.footer_social-networks img {
+  width: 50px;
+  height: 50px;
 }

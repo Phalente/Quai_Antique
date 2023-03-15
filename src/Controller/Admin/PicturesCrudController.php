@@ -4,12 +4,13 @@ namespace App\Controller\Admin;
 
 use App\Entity\Pictures;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class PicturesCrudController extends AbstractCrudController
 {
@@ -42,6 +43,7 @@ class PicturesCrudController extends AbstractCrudController
                 ->setFormType(VichImageType::class)
                 ->setLabel('Importez votre image')
                 ->onlyWhenCreating(),
+            BooleanField::new('Carrousel'),
             ImageField::new('file')
                 ->setBasePath('/uploads/pictures')
                 ->onlyOnIndex(),

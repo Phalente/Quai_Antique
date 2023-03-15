@@ -38,6 +38,9 @@ class Pictures
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $Carrousel = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -98,6 +101,19 @@ class Pictures
             $this->updatedAt = new \DateTimeImmutable();
         }
     }
+
+    public function isCarrousel(): ?bool
+    {
+        return $this->Carrousel;
+    }
+
+    public function setCarrousel(?bool $Carrousel): self
+    {
+        $this->Carrousel = $Carrousel;
+
+        return $this;
+    }
+
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
