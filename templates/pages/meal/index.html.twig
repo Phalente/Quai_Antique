@@ -9,18 +9,18 @@
 {% block body %}
     <div class="container mt-4">
         <h1 class='text-center'>LA CARTE</h1>
-            <h2 class='p-3'> Nos fondues </h2>
-            {% for entree in entrees %}
+            <h2 class='p-3'> Les fondues </h2>
+            {% for fondue in fondues %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ entree.title }}</h5>
-                    <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }} €</small>
+                    <h5 class="mb-1">{{ fondue.title }}</h5>
+                    <small class="text-muted">{{ fondue.price | number_format(2, ',', ' ') }} €</small>
                     </div>
-                    <p class="mb-3">{{ entree.description }}</p>
+                    <p class="mb-3">{{ fondue.description }}</p>
                 </div>
             {% endfor %}
 
-            <h2 class='p-3'> Nos plats </h2>
+            <h2 class='p-3'> Tartiflette / Croziflette / Raclettes </h2>
 
             {% for plat in plats %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
@@ -29,6 +29,18 @@
                     <small class="text-muted">{{ plat.price | number_format(2, ',', ' ') }} €</small>
                     </div>
                     <p class="mb-3">{{ plat.description }}</p>
+                </div>
+            {% endfor %}
+
+            <h2 class='p-3'> Nos Salades </h2>
+
+            {% for salade in salades %}
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ salade.title }}</h5>
+                    <small class="text-muted">{{ salade.price | number_format(2, ',', ' ') }} €</small>
+                    </div>
+                    <p class="mb-3">{{ salade.description }}</p>
                 </div>
             {% endfor %}
 
@@ -41,18 +53,6 @@
                     <small class="text-muted">{{ dessert.price | number_format(2, ',', ' ') }} €</small>
                     </div>
                     <p class="mb-3">{{ dessert.description }}</p>
-                </div>
-            {% endfor %}
-
-            <h2 class='p-3'> Nos burgers </h2>
-
-            {% for burger in burgers %}
-                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ burger.title }}</h5>
-                    <small class="text-muted">{{ burger.price | number_format(2, ',', ' ') }} €</small>
-                    </div>
-                    <p class="mb-3">{{ burger.description }}</p>
                 </div>
             {% endfor %}
 
