@@ -25,8 +25,8 @@ class MealsController extends AbstractController
         $meals = $mealsRepository->findAll();
         $fondues = $mealsRepository->findByCategoriesID(1);
         $plats = $mealsRepository->findByCategoriesID(2);
-        $salades = $mealsRepository->findByCategoriesID(4);
-        $desserts = $mealsRepository->findByCategoriesID(3);
+        $salades = $mealsRepository->findByCategoriesID(3);
+        $desserts = $mealsRepository->findByCategoriesID(4);
         $boissons = $mealsRepository->findByCategoriesID(5);
 
 

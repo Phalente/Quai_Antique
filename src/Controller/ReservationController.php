@@ -89,12 +89,19 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/utilisateur/mes-reservations/{id}', name: 'my_reservation.index', methods: ['GET'])]
-    public function myReservation(User $user, ReservationRepository $reservationRepository): Response
-    {
-        if (!$this->getUser()) {
+    #[Security("is_granted('ROLE_USER') and user === request.attributes.get('user')")]
+
+    public function myReservation(
+        User $user,
+        ReservationRepository $reservationRepository,
+        Security $security
+    ): Response {
+        $currentUser = $security->getUser();
+
+        if (!$currentUser) {
             return $this->redirectToRoute('security.login');
         }
-        if ($this->getUser() !== $user) {
+        if ($currentUser !== $user) {
             return $this->redirectToRoute('home.index');
         }
         $reservations = $reservationRepository->findBy(['User' => $this->getUser()]);

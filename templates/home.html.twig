@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Quai Antique
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="text_slider d-flex row">
+            <h1 id="bienvenue"> Bienvenue chez Quai Antique </h1>
+            <div class="text-container col-12 col-lg-6">
+                <p>
+                    Un véritable paradis pour les amateurs de fromage, de charcuterie et de plats montagnards authentiques ! 
+                    Vous serez immédiatement plongé dans l'atmosphère savoyarde, avec des décorations traditionnelles, des boiseries 
+                    rustiques et des éclairages doux et tamisés.
+                </p>
+                <p>
+                    Désireux de vous faire connaître ses spécialités, le chef Michant a élaboré une carte riche en saveurs et en produits locaux de qualité, avec des plats incontournables tels que la fondue 
+                    savoyarde, la raclette, la tartiflette et la croziflette. Nos spécialités sont cuisinées avec des ingrédients frais et de qualité supérieure, pour vous 
+                    offrir une expérience culinaire unique et authentique.                
+                    </p>
+                <p>
+                Que vous veniez en couple, en famille ou entre amis, notre restaurant est l'endroit idéal pour passer un moment agréable et inoubliable. Nous sommes 
+                impatients de vous accueillir et de vous faire découvrir la richesse de la gastronomie savoyarde dans un cadre chaleureux et convivial. 
+                </p>
+            </div>
+            <div class="container-slider col-12 col-lg-6">
+                <i id="nav-left" class="bi bi-chevron-left"></i>
+                <i id="nav-right" class="bi bi-chevron-right"></i>
+                <div class="slider-items">
+                    {% for picture in sliderPicture %}
+                        <div class="slider-item">
+                            <img src="{{ vich_uploader_asset(picture, 'PictureFile') }}" alt="{{ picture.textAlt }}">
+                                <div class="carrossel-item-title">
+                                    <h3 class="text-center">{{ picture.pictureTitle }}</h3>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
