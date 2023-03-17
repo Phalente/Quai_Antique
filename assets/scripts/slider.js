@@ -12,7 +12,6 @@ window.onload = () => {
   slides = Array.from(sliderItems.children);
 
   slideWidth = sliderItem.getBoundingClientRect().width;
-  console.log(slideWidth);
   let next = document.querySelector("#nav-right");
   let prev = document.querySelector("#nav-left");
 

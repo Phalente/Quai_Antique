@@ -2,10 +2,21 @@ ul.meals {
   padding: 0;
 }
 
-ul.meals li {
+.meals li {
   list-style: none;
   text-align: center;
   margin: 10px;
+}
+
+.meals li a {
+  text-decoration: none;
+  color: $firstColor;
+}
+
+.meals li a:hover {
+  color: $secondColor;
+  text-decoration: underline 1px;
+  text-underline-offset: 6px;
 }
 
 h5#title {

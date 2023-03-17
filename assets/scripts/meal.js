@@ -3,7 +3,6 @@ const mainCourses = document.querySelector(".main-courses");
 const desserts = document.querySelector(".desserts");
 const drinks = document.querySelector(".drinks");
 const links = [starters, mainCourses, desserts, drinks];
-console.log(links);
 const plats = document.querySelectorAll(".plat");
 
 links.forEach((link) => {
