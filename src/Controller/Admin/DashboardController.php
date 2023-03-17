@@ -3,10 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
-use App\Entity\Meals;
+use App\Entity\Meal;
 use App\Entity\Picture;
 use App\Entity\RestaurantHours;
-use App\Entity\Categories;
+use App\Entity\Category;
 use App\Entity\Menus;
 use App\Entity\Formulas;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,8 +38,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Photos', 'fas fa-image', Picture::class);
         yield MenuItem::subMenu('La Carte', 'fas fa-bread-slice')->setSubItems([
-            MenuItem::linkToCrud('Categorie', 'fas fa-arrow-right', Categories::class),
-            MenuItem::linkToCrud('Plats', 'fas fa-arrow-right', Meals::class),
+            MenuItem::linkToCrud('Categories', 'fas fa-arrow-right', Category::class),
+            MenuItem::linkToCrud('Plats', 'fas fa-arrow-right', Meal::class),
             MenuItem::linkToCrud('Menus', 'fas fa-arrow-right', Menus::class),
             MenuItem::linkToCrud('Formules', 'fas fa-arrow-right', Formulas::class),
         ]);
