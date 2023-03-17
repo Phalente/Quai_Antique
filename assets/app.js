@@ -11,3 +11,4 @@ import "./styles/app.scss";
 import "./bootstrap";
 import "./scripts/timeslot";
 import "./scripts/slider";
+import "./scripts/meal";

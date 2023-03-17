@@ -17,12 +17,3 @@
         {{ form_end(formReservation) }}
 
     {% endblock %}
-
-    {% block javascript %}
-        <script>
-            let date = document.querySelector("#reservation_Date");
-            date.addEventListener("change", function () {
-                this.setAttribure('value', this.value);
-            });
-        </script>
-    {% endblock %}

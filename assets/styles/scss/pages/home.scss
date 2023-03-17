@@ -8,3 +8,20 @@
 .text-container p {
   font-family: $thirdText;
 }
+
+#btn {
+  background-color: $secondColor;
+  color: $firstColor;
+  font-family: $principalText;
+  transition: 0.2s;
+}
+
+#btn:hover {
+  background-color: #75acb6;
+  color: $firstColor;
+  font-family: $principalText;
+  font-weight: 700;
+  font-size: 1.2em;
+  transition: 0.2s;
+  text-decoration: underline;
+}
