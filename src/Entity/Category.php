@@ -2,31 +2,31 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriesRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: CategoriesRepository::class)]
-class Categories
+#[ORM\Entity(repositoryClass: CategoryRepository::class)]
+class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 50)]
+    #[Assert\Length(min: 2, max: 50)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min: 2, max: 100)]
     private ?string $Name = null;
 
-    #[ORM\ManyToMany(targetEntity: Meals::class, inversedBy: 'categories')]
-    private Collection $Meals;
+    #[ORM\ManyToMany(targetEntity: Meal::class, mappedBy: 'category')]
+    private Collection $meals;
 
     public function __construct()
     {
-        $this->Meals = new ArrayCollection();
+        $this->meals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -47,26 +47,28 @@ class Categories
     }
 
     /**
-     * @return Collection<int, Meals>
+     * @return Collection<int, Meal>
      */
     public function getMeals(): Collection
     {
-        return $this->Meals;
+        return $this->meals;
     }
 
-    public function addMeal(Meals $meal): self
+    public function addMeal(Meal $meal): self
     {
-        if (!$this->Meals->contains($meal)) {
-            $this->Meals->add($meal);
+        if (!$this->meals->contains($meal)) {
+            $this->meals->add($meal);
             $meal->addCategory($this);
         }
 
         return $this;
     }
 
-    public function removeMeal(Meals $meal): self
+    public function removeMeal(Meal $meal): self
     {
-        $this->Meals->removeElement($meal);
+        if ($this->meals->removeElement($meal)) {
+            $meal->removeCategory($this);
+        }
 
         return $this;
     }

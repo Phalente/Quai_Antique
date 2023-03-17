@@ -16,6 +16,9 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+<<<<<<< HEAD
+node_modules
+=======
 /public/uploads/images/*
 
 ###> symfony/webpack-encore-bundle ###
@@ -24,3 +27,4 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+>>>>>>> feature_reservations

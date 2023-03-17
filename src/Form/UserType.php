@@ -66,10 +66,10 @@ class UserType extends AbstractType
                     'minlength' => '2',
                     'maxlength' => '50',
                 ],
-                'label' => 'Nombre de couvert par défaut (Facultatif)',
+                'label' => 'Nombre de convives par défaut (Facultatif)',
                 'required' => false,
                 'label_attr' => [
-                    'class' => 'form-label mt-4'
+                    'class' => 'form-label'
                 ],
                 'constraints' => [
                     new Assert\PositiveOrZero,
@@ -107,7 +107,7 @@ class UserType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-4'
+                    'class' => 'btn btn-primary mt-2'
                 ]
             ]);
     }

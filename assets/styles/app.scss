@@ -1,29 +1,6 @@
-$firstColor: #7a1920;
-$secondColor: #8dccd6;
-$principalText: "Libre Baskerville", serif;
-$secondText: "Italianno", cursive;
-$thirdText: "Inter", sans-serif;
-
-.navbar {
-  background-color: $firstColor;
-}
-
-.navbar a {
-  color: $secondColor;
-  font-family: $secondText;
-  font-size: 2.2em;
-}
-
-h1,
-h2 {
-  font-family: $principalText;
-}
-
-p {
-  font-family: $thirdText;
-  font-size: 1.2em;
-}
-
-img {
-  width: 140px;
-}
+@import "./scss/Partials/variables";
+@import "./scss/Partials/_header.scss";
+@import "./scss/Partials/_footer.scss";
+@import "./scss/components/Slider.scss";
+@import "./scss/pages/home.scss";
+@import "./scss/pages/meal.scss";

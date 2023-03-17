@@ -2,37 +2,37 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class CategoriesController extends AbstractController
+class CategoryController extends AbstractController
 {
-    #[Route('/categorie', name: 'app_categories')]
-    public function createCategories(ManagerRegistry $doctrine): Response
+    #[Route('/categorie', name: 'app_category')]
+    public function createCategory(ManagerRegistry $doctrine): Response
     {
         $entitymanager = $doctrine->getManager();
-        $category = array(
+        $categories = array(
             'Entrées',
             'Plats',
             'Desserts',
             'Boissons'
         );
 
-        $existingCategories = $entitymanager->getRepository(Categories::class)->findAll();
+        $existingCategories = $entitymanager->getRepository(Category::class)->findAll();
 
         if (count($existingCategories) === 0) {
-            foreach ($category as $categoryName) {
-                $categories = new Categories();
-                $categories->setName($categoryName);
-                $entitymanager->persist($categories);
+            foreach ($categories as $categoryName) {
+                $category = new Category();
+                $category->setName($categoryName);
+                $entitymanager->persist($category);
             }
 
             $entitymanager->flush();
 
-            return new Response('Catégories ajoutées à la base de donnée :' . implode(', ', $category));
+            return new Response('Catégories ajoutées à la base de donnée :' . implode(', ', $categories));
         } else {
             return new Response('Les catégories ont déjà été insérées dans la base de données.');
         }

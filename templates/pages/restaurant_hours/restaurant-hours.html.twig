@@ -1,0 +1,22 @@
+<div class="container p-4 footer_restaurant-hour">
+    <h1 class="d-flex justify-content-center">Heure d'ouverture</h1>
+    <div class="list-group mt-4">
+        {% for restaurantHour in restaurantHours %}
+            <div class="list-group-item list-group-item-action flex-column align-items-center">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <h5 class="mb-1">{{ restaurantHour.day }}</h5>
+                    <div class="d-flex flex-column">
+                        <small class="text-muted">{{ restaurantHour.openingLunch | date('H:i') }}
+                            à
+                            {{ restaurantHour.closingLunch | date('H:i') }}
+                        </small>
+                        <small class="text-muted">{{ restaurantHour.openingDinner | date('H:i') }}
+                            à
+                            {{ restaurantHour.closingDinner | date('H:i') }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

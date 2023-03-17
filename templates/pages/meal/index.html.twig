@@ -1,70 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-
-    Liste des plats!
-
+{% block title %}Liste des plats!
 {% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <h1 class='text-center'>LA CARTE</h1>
-            <h2 class='p-3'> Nos fondues </h2>
+    <div class="container mt-4 la-carte">
+        <h1 class='mt-4 text-center'>La Carte</h1>
+        <nav class="nav_menu">
+            <ul class=" meals d-flex justify-content-center ">
+                <li>
+                    <a href="#" data-category="starters" class="starters">Fondues & Salades</a>
+                </li>
+                <li>
+                    <a href="#" data-category="main-courses" class="main-courses">Plats</a>
+                </li>
+                <li>
+                    <a href="#" data-category="desserts" class="desserts">Desserts</a>
+                </li>
+                <li>
+                    <a href="#" data-category="drinks" class="drinks">Boissons</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="list-group mt-4 plat" data-category="starters">
+            <h2 class='mt-4'>Les Fondues & Salades</h2>
             {% for entree in entrees %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ entree.title }}</h5>
-                    <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }} €</small>
+                        <h5 id="title" class="mb-1">{{ entree.title }}</h5>
+                        <small class="text-muted">{{ entree.price | number_format(2, ',', ' ') }}
+                            €</small>
                     </div>
-                    <p class="mb-3">{{ entree.description }}</p>
+                    <p class="mb-1">{{ entree.description }}</p>
                 </div>
             {% endfor %}
-
-            <h2 class='p-3'> Nos plats </h2>
-
+        </div>
+        <div class="list-group mt-4 plat" data-category="main-courses">
+            <h2 class='mt-4'>Croziflettes / Raclettes / Tartiflettes </h2>
             {% for plat in plats %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ plat.title }}</h5>
-                    <small class="text-muted">{{ plat.price | number_format(2, ',', ' ') }} €</small>
+                        <h5 id="title" class="mb-1">{{ plat.title }}</h5>
+                        <small class="text-muted">{{ plat.price | number_format(2, ',', ' ') }}
+                            €</small>
                     </div>
-                    <p class="mb-3">{{ plat.description }}</p>
+                    <p class="mb-1">{{ plat.description }}</p>
                 </div>
             {% endfor %}
-
-            <h2 class='p-3'> Nos desserts </h2>
-
+        </div>
+        <div class="list-group mt-4 plat" data-category="desserts">
+            <h2 class='mt-4'>Les Desserts</h2>
             {% for dessert in desserts %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ dessert.title }}</h5>
-                    <small class="text-muted">{{ dessert.price | number_format(2, ',', ' ') }} €</small>
+                        <h5 id="title" class="mb-1">{{ dessert.title }}</h5>
+                        <small class="text-muted">{{ dessert.price | number_format(2, ',', ' ') }}
+                            €</small>
                     </div>
-                    <p class="mb-3">{{ dessert.description }}</p>
+                    <p class="mb-1">{{ dessert.description }}</p>
                 </div>
             {% endfor %}
-
-            <h2 class='p-3'> Nos burgers </h2>
-
-            {% for burger in burgers %}
-                <div class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ burger.title }}</h5>
-                    <small class="text-muted">{{ burger.price | number_format(2, ',', ' ') }} €</small>
-                    </div>
-                    <p class="mb-3">{{ burger.description }}</p>
-                </div>
-            {% endfor %}
-
-            <h2 class='p-3'> Nos boissons </h2>
-
+        </div>
+        <div class="list-group mt-4 plat" data-category="drinks">
+            <h2 class='mt-4'>Les Boissons</h2>
             {% for boisson in boissons %}
                 <div class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ boisson.title }}</h5>
-                    <small class="text-muted">{{ boisson.price | number_format(2, ',', ' ') }} €</small>
+                        <h5 id="title" class="mb-1">{{ boisson.title }}</h5>
+                        <small class="text-muted">{{ boisson.price | number_format(2, ',', ' ') }}
+                            €</small>
                     </div>
-                    <p class="mb-3">{{ boisson.description }}</p>
+                    <p class="mb-1">{{ boisson.description }}</p>
                 </div>
             {% endfor %}
         </div>
