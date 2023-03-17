@@ -2,18 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\Menus;
-use App\Entity\Categories;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\MealsRepository;
+use App\Repository\MealRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-#[ORM\Entity(repositoryClass: MealsRepository::class)]
-class Meals
+
+#[ORM\Entity(repositoryClass: MealRepository::class)]
+class Meal
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,20 +28,20 @@ class Meals
     private ?string $Description = null;
 
     #[ORM\Column]
-    #[Assert\Positive()]
     #[Assert\NotNull()]
+    #[Assert\Positive()]
     private ?float $Price = null;
 
-    #[ORM\ManyToMany(targetEntity: Categories::class, mappedBy: 'Meals')]
-    private Collection $categories;
+    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'meals')]
+    private Collection $category;
 
     #[ORM\ManyToMany(targetEntity: Menus::class, inversedBy: 'meals')]
-    private Collection $Menus;
+    private Collection $menus;
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-        $this->Menus = new ArrayCollection();
+        $this->category = new ArrayCollection();
+        $this->menus = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -87,52 +86,49 @@ class Meals
     }
 
     /**
-     * @return Collection<int, Categories>
+     * @return Collection<int, Category>
      */
-    public function getCategories(): Collection
+    public function getCategory(): Collection
     {
-        return $this->categories;
+        return $this->category;
     }
 
-    public function addCategory(Categories $category): self
+    public function addCategory(Category $category): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->addMeal($this);
+        if (!$this->category->contains($category)) {
+            $this->category->add($category);
         }
 
         return $this;
     }
 
-    public function removeCategory(Categories $category): self
+    public function removeCategory(Category $category): self
     {
-        if ($this->categories->removeElement($category)) {
-            $category->removeMeal($this);
-        }
+        $this->category->removeElement($category);
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Menus>
+     * @return Collection<int, Menu>
      */
-    public function getMenus(): Collection
+    public function getMenu(): Collection
     {
-        return $this->Menus;
+        return $this->menus;
     }
 
-    public function addMenu(Menus $menu): self
+    public function addMenu(Menus $menus): self
     {
-        if (!$this->Menus->contains($menu)) {
-            $this->Menus->add($menu);
+        if (!$this->menus->contains($menus)) {
+            $this->menus->add($menus);
         }
 
         return $this;
     }
 
-    public function removeMenu(Menus $menu): self
+    public function removeMenu(Menus $menus): self
     {
-        $this->Menus->removeElement($menu);
+        $this->menus->removeElement($menus);
 
         return $this;
     }
