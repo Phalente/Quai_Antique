@@ -17,16 +17,17 @@
                 </tr>
             </thead>
             <tbody>
+                {% for reservation in reservations %}
                 <tr class="table-active">
-                    {% for reservation in reservations %}
                         <th scope="row">{{ reservation.id }}</th>
                         <td>{{ reservation.date|date('d/m/Y') }}</td>
                         <td>{{ reservation.hour|date('H:i') }}</td>
                         <td>{{ reservation.Numberofcovers }}</td>
                         <td>{{ reservation.allergies|join(', ') }}</td>
-                    {% endfor %}
+                {% endfor %}
                 </tr>
             </tbody>
-        </div>
+        </table>
+    </div>
 
     {% endblock %}
