@@ -107,8 +107,9 @@ class UserType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary mt-2'
-                ]
+                    'class' => 'btn btn-info mt-2'
+                ],
+                'label' => 'Modifier mon profil'
             ]);
     }
 

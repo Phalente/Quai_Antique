@@ -139,8 +139,9 @@ class RegistrationType extends AbstractType
 
             ->add('submit', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-primary'
-                ]
+                    'class' => 'btn btn-info'
+                ],
+                'label' => 'Créer mon profil'
             ]);
     }
 
