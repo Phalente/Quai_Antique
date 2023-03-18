@@ -4,6 +4,10 @@
   background-color: $firstColor;
 }
 
+.navbar-nav {
+  margin: auto;
+}
+
 .navbar a {
   color: $secondColor;
   font-family: $secondText;
