@@ -11,14 +11,13 @@
     height: 100%;
     width: 100%;
     color: $firstColor;
-    text-decoration: underline;
+
     align-items: center;
 
     .slider-item {
       flex: 1 0 100%;
       position: relative;
       color: $firstColor;
-      text-decoration: underline;
 
       img {
         width: 100%;
