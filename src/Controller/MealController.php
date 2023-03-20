@@ -24,7 +24,7 @@ class MealController extends AbstractController
     #[Route('/carte', name: 'carte.index')]
     public function index(MealRepository $mealRepository): Response
     {
-        $entrees = $mealRepository->findMealsByCategoryId(1);
+        $fonduSalades = $mealRepository->findMealsByCategoryId(1);
         $plats = $mealRepository->findMealsByCategoryId(2);
         $desserts = $mealRepository->findMealsByCategoryId(3);
         $boissons = $mealRepository->findMealsByCategoryId(4);
@@ -33,7 +33,7 @@ class MealController extends AbstractController
 
         return $this->render('pages/meal/index.html.twig', [
             'meals' => $meals,
-            'entrees' => $entrees,
+            'fonduSalades' => $fonduSalades,
             'plats' => $plats,
             'desserts' => $desserts,
             'boissons' => $boissons,

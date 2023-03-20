@@ -1,13 +1,14 @@
 // footer
-.container {
-  flex-grow: 1;
-}
 
 footer {
   background-color: $firstColor;
   color: $secondColor;
   font-family: $thirdText;
+  position: absolute;
+  right: 0;
   bottom: 0;
+  left: 0;
+  height: 23em;
 }
 
 footer a {

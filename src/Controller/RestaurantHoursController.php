@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\RestaurantHours;
 use App\Repository\RestaurantHoursRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,8 @@ class RestaurantHoursController extends AbstractController
 {
 
   #[Route('/addhoraire', name: 'app_hours')]
+  #[IsGranted('ROLE_ADMIN')]
+
   public function createRestaurantHours(ManagerRegistry $doctrine): Response
   {
     $entitymanager = $doctrine->getManager();
