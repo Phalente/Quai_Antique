@@ -10,14 +10,14 @@
     display: flex;
     height: 100%;
     width: 100%;
-    color: $firstColor;
+    color: $secondColor;
 
     align-items: center;
 
     .slider-item {
       flex: 1 0 100%;
       position: relative;
-      color: $firstColor;
+      color: $secondColor;
 
       img {
         width: 100%;
@@ -28,9 +28,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        background-color: rgba(255, 255, 255, 0.4);
+        background-color: #7a191fa9;
         padding: 10px;
         display: none;
+        font-family: $principalText;
       }
       &:hover .slider-item-title {
         display: block;

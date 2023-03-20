@@ -1,9 +1,13 @@
 // footer
+.container {
+  flex-grow: 1;
+}
 
 footer {
   background-color: $firstColor;
   color: $secondColor;
   font-family: $thirdText;
+  bottom: 0;
 }
 
 footer a {
@@ -49,4 +53,9 @@ footer a:hover {
   font-size: 0.8em;
   transition: 0.2s;
   text-decoration: underline;
+}
+
+.cp-text {
+  text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+  font-size: 1em;
 }
