@@ -1,6 +1,6 @@
 INSERT INTO
     meal (title, price, description)
-VALUES ('Coca-cola', 4, ' ');
+VALUES ('La Fondue Savoyarde', 25, 'Comté, Abondance, Beaufort & Emmental');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -9,13 +9,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Fanta', 4, ' ');
+VALUES ('La Fondue Au Cidre', 26, 'Comté, Abondance, Cidre doux, Beaufort & Emmental');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -24,28 +24,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
-        )
-    );
-
-    INSERT INTO
-    meal (title, price, description)
-VALUES ('Sprite', 4, ' ');
-
-INSERT INTO
-    meal_category (meal_id, category_id)
-VALUES (
-        LAST_INSERT_ID(), (
-            SELECT id
-            FROM category
-            WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Jus d\'orange', 3, ' ');
+VALUES ('La Fondue Aux Cépes', 28, 'Comté, Abondance, Beaufort & Emmental avec des cépes');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -54,13 +39,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Jus de pommes', 3, ' ');
+VALUES ('La Fondue Du Beaufortain', 31, 'Beaufort longuement affiné et Beaufort fruité');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -69,13 +54,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Domaine Etienne Sauzet', 20, 'Bourgogne, Chardonnay - 2014');
+VALUES ('La Fondue Bourguignonne', 28, 'Dés de boeuf à plonger dans un caquelon d\'huile chaude, 3 sauces: mayonnaise, tartare & curry');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -84,13 +69,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Château de Beaucastel', 18, 'Bordeaux, Saint-Estèphe - 2017');
+VALUES ('La Fondue Bourguignonne Royale', 32, 'Dés de boeuf, volaille & magret de canard à plonger dans un caquelon d\'huile chaude, 3 sauces : mayonnaise, tartare & curry');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -99,13 +84,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Château Cos D \’ Estournel', 17, 'Bordeaux, Médoc - 2014');
+VALUES ('Salade De Chèvre', 18, 'Salade verte, croûtons, fromage de chèvre, cébettes, cerneaux de noix, jambon cru');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -114,13 +99,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Château de la Mar - Le Golliat', 16, 'Savoie – 2012');
+VALUES ('Salade Mixte', 15, 'Salade verte, tomates, concombres, cébettes, croutons');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -129,13 +114,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Domaine Dupraz - Montracul', 16, 'Savoie – 2012');
+VALUES ('Salade De Savoie', 19, 'Salade verte, croûtons, lardons, tomme de savoie, pommes de terre');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -144,13 +129,13 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );
 
 INSERT INTO
     meal (title, price, description)
-VALUES ('Terres de Berne', 24, 'Rosé, AOP Côtes de Provence - 2021');
+VALUES ('Salade de Montagnard', 19, 'Pommes de terre, batavia, chèvre, lardons fumées, fromage Beaufort, jambon fumé, speck');
 
 INSERT INTO
     meal_category (meal_id, category_id)
@@ -159,6 +144,6 @@ VALUES (
             SELECT id
             FROM category
             WHERE
-                name = 'Les Boissons'
+                name = 'Les Fondus'
         )
     );

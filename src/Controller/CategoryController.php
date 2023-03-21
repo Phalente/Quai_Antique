@@ -18,10 +18,10 @@ class CategoryController extends AbstractController
     {
         $entitymanager = $doctrine->getManager();
         $categories = array(
-            'Fondus & Salades',
-            'Plats',
-            'Desserts',
-            'Boissons'
+            'Les Fondus',
+            'Les Plats',
+            'Les Desserts',
+            'Les Boissons'
         );
 
         $existingCategories = $entitymanager->getRepository(Category::class)->findAll();
