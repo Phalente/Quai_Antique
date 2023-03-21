@@ -131,7 +131,7 @@ Le mot de passe utilisé sera : `password`
 
 ---
 
-Pour finir, vous pouvez fermer votre server avec la simple commande
+Pour finir, vous pouvez fermer votre server avec la simple commande :
 
 ```
 symfony server:stop
